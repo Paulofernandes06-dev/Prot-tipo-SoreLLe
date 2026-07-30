@@ -4,131 +4,60 @@
     --dourado-claro: #F9E29C; /*(Luminosidade e destaque)*/
 }
 
+* {
+    font-family: Poppins; /*FONTE PADRÃO*/
+}
+
 body {
-    margin: 0;
-    font-family: Poppins;
+    margin: 0 auto;
+    padding: auto;
+    width: 100%;
 }
 
-/*CONTAINER DA NAVBAR principal*/
+
 .navbar-container{
-    display: flex;
-    border: 1px solid #F9E29C;
+    padding: 15px 20px;
+    border: 1px solid #D4AF37;
+    border-radius: 5px;
     background-color: #4C5330;
-    padding: 10px;
-    gap: 30px;
+    display: flex;
+    justify-content: center; /*Coloca logo ao lado da navegação*/
+    flex-direction: column;
     align-items: center;
+    gap: 20px;
+}
+.navbar-container a {
+    text-decoration: none;
+    color: var(--dourado-primario);
 }
 
-/* CONFIGURAÇÕES DA LOGO */
+
 #logo_link {
-    text-decoration: none;
-    color: #F9E29C;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 400;
-    font-style: italic;
-    letter-spacing: 2px;
-    
-    padding: 5px 15px;
-    border: 1px solid rgba(249, 226, 156, 0.3); 
+    border: 1px solid var(--dourado-primario);
     border-radius: 4px;
-    transition: all 0.3s ease;
+    padding: 6px 12px; /* Mais espaço nas laterais deixa mais imponente */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; /* Deixa a letra levemente mais grossa/forte */
+    text-transform: uppercase; /* Força todas as letras ficarem MAIÚSCULAS */
+    letter-spacing: 3px; /* Dá um distanciamento elegante entre cada letra */
+    transition: all 0.4s ease; /* A mágica sênior: faz o efeito do mouse ser suave */
 }
-
 #logo_link:hover {
-    background-color: #F9E29C;
-    color: #4C5330; /* Inverte a cor no hover */
+    color: var(--dourado-claro);
+    border-color: var(--dourado-claro);
+    background-color: rgba(212, 175, 55, 0.08); /* Cria um brilho dourado de fundo bem suave (8%) */
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); /* Adiciona uma aura de luz dourada bem discreta ao redor */
 }
 
-/* BARRA DE NAVEGAÇÃO DO SITE */
-.nav {
+
+.nav { /*Navegação do menu principal container*/
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    padding: 30px 0;
+    gap: 15px;
+    text-decoration: underline;
+    text-decoration-color: var(--dourado-primario);
 }
-
-.nav a {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    font-size: 0.85rem;
-    text-decoration: none;
-    color: #F9E29C;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    position: relative;
-    transition: opacity 0.3s;
-}
-
-/* Efeito de linha refinada ao passar o mouse */
-.nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: -5px;
-    left: 0;
-    background-color: #F9E29C;
-    transition: width 0.3s;
-}
-.nav a:hover::after {
-    width: 100%;
-}
-.nav a:hover {
-    opacity: 0.7;
-}
-
-/*Configurações Section 1*/
-#home {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    /* Substitua pelo caminho da sua imagem */
-    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('/Imagens/sorelle.jpg');
-    background-size: cover;
-    background-position: center;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-#home h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 10vw, 6rem); /* Ajusta o tamanho conforme a tela */
-    font-weight: 400;
-    color: #4C5330;
-    text-transform: uppercase;
-    letter-spacing: 15px;
-    margin: 0;
-    text-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-}
-
-#home h6 {
-    position: absolute;
-    bottom: 50px; /* Distância do fundo */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 200;
-    color: rgba(255, 255, 255, 0.8); /* Branco levemente transparente */
-    text-transform: uppercase;
-    letter-spacing: 6px;
-    margin: 0;
-}
-#home::after {
-    content: "";
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    pointer-events: none;
-}
-
-/*Configurações secition 2*/
-#produtos{
-    background-color: #4C5330;
-    color: #F9E29C;
+.nav :hover { /*Efeito de acesso quando clica ou passa o mouse sobre os links*/
+    background-color: var(--dourado-claro);
+    border-radius: 5px;
+    padding: 5px;
 }
