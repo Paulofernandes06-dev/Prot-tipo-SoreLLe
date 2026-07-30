@@ -1,3 +1,9 @@
+:root{
+    --cor-principal: #4C5330; /*Símbolo de sofisticação e natureza*/
+    --dourado-primario: #D4AF37; /*eleGância e metais finos*/
+    --dourado-claro: #F9E29C; /*(Luminosidade e destaque)*/
+}
+
 body {
     margin: 0;
     font-family: Poppins;
