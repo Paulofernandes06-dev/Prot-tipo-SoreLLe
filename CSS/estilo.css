@@ -69,7 +69,7 @@ body {
     color: var(--dourado-primario);
     text-align: center;
     font-style: italic;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 
@@ -78,9 +78,10 @@ body {
     justify-content: space-between;
     flex-direction: column;
     text-align: center;
-    gap: 10px;
     margin: 5px;
-    padding: 5px;
+    border: 1px solid var(--dourado-claro); /*criando uma box para não me perder*/
+    margin-bottom: 10px;
+    border-radius: 5px;
 }
 .novidades img {
     border: 1px solid var(--dourado-primario);
@@ -92,8 +93,28 @@ h2 {
     color: var(--dourado-primario);
 }
 
-
 #catalogo {
     border-top: 1px solid var(--dourado-primario);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 5px;
+}
+
+/* CORREÇÃO: Usando a vírgula para aplicar a regra nas duas classes */
+.linha1, .linha2 {
+    border: 1px solid var(--dourado-claro);
+    display: flex;        /* Ativa o flex para alinhar os produtos da linha */
+    flex-direction: column; /* No celular, os produtos ficam um embaixo do outro */
+    gap: 10px;
+    /* REMOVIDO: height fixo de 40vh pode quebrar o layout no mobile */
+    padding: 10px;        /* Dá um espaço interno respirável */
+}
+
+/* Garante que as imagens dentro da linha não estourem o tamanho da tela */
+.linha1 img, .linha2 img {
+    border: 1px solid var(--dourado-claro);
+    max-width: 100%;      /* A imagem nunca fica maior que a caixinha dela */
+    height: auto;         /* Mantém a proporção correta da foto */
 }
