@@ -99,7 +99,13 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin: 5px;
+    margin: 0px;
+}
+.titulo-catalogo {
+    background-color: var(--dourado-primario);
+}
+.titulo-catalogo h2 {
+    color: var(--cor-principal);
 }
 
 /* CORREÇÃO: Usando a vírgula para aplicar a regra nas duas classes */
@@ -110,6 +116,7 @@ h2 {
     gap: 10px;
     /* REMOVIDO: height fixo de 40vh pode quebrar o layout no mobile */
     padding: 10px;        /* Dá um espaço interno respirável */
+    margin: 3px;
 }
 
 /* Garante que as imagens dentro da linha não estourem o tamanho da tela */
@@ -117,4 +124,5 @@ h2 {
     border: 1px solid var(--dourado-claro);
     max-width: 100%;      /* A imagem nunca fica maior que a caixinha dela */
     height: auto;         /* Mantém a proporção correta da foto */
+    border-radius: 15px;
 }
