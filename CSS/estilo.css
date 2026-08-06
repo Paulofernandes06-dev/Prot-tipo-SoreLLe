@@ -126,3 +126,15 @@ h2 {
     height: auto;         /* Mantém a proporção correta da foto */
     border-radius: 15px;
 }
+.sobre-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--dourado-primario);
+}
+
+h2 {
+    color: var(--cor-principal);
+}
