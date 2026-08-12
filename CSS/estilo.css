@@ -79,9 +79,13 @@ body {
     flex-direction: column;
     text-align: center;
     margin: 5px;
-    border: 1px solid var(--dourado-claro); /*criando uma box para não me perder*/
     margin-bottom: 10px;
     border-radius: 5px;
+}
+.novidades h2 {
+    background-color: var(--dourado-primario);
+    height: 50px;
+    margin: 0px;
 }
 .novidades img {
     border: 1px solid var(--dourado-primario);
