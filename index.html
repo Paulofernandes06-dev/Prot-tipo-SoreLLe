@@ -4,13 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoreLLe Oficial</title>
+
+    <!-- 
+        CORREÇÃO: o link original apontava para "https://googleapis.com" (sem a folha 
+        de fonte de verdade), então a fonte Poppins usada no CSS nunca era carregada 
+        e o navegador caía no fallback padrão. Trocado pela URL correta do Google Fonts. 
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="CSS/estilo.css">
-    <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
     <header class="navbar-container">
         <a href="index.html" id="logo_link">SoreLLe</a>
-        <nav class="nav">
+
+        <!-- 
+            Botão "hambúrguer": só aparece via CSS em telas pequenas (ver media query 
+            no estilo.css). Em telas maiores o menu já fica visível, então o botão 
+            é escondido. Isso evita duplicar HTML para mobile/desktop. 
+        -->
+        <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menu de navegação">
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+        </button>
+
+        <nav class="nav" id="navMenu">
             <a href="#home">Início</a>
             <a href="#catalogo">Catálogo</a>
             <a href="#sobre">Sobre</a>
@@ -19,35 +40,131 @@
         </nav>
     </header>
     <main>
-        <h1 class="frase_marcante">"Moda feminina que valoriza quem você é, em cada detalhe."</h1>
+        <h1 id="home" class="frase_marcante">"Moda feminina que valoriza quem você é, em cada detalhe."</h1>
+
+        <!-- ===================== NOVIDADES ===================== -->
         <section class="novidades">
             <h2>NOVIDADES</h2>
-            <div>
-                <img src="imagens/exemplo_novidades600px.jpg" alt="novidade1">
-                <img src="imagens/exemplo_novidades2_600px.jpg" alt="novidade2">
-                <img src="imagens/exemplo_novidades3_600px.jpg" alt="novidade3">
+            <div class="novidades__grade">
+                <img src="imagens/exemplo_novidades600px.jpg" alt="novidade1" loading="lazy">
+                <img src="imagens/exemplo_novidades2_600px.jpg" alt="novidade2" loading="lazy">
+                <img src="imagens/exemplo_novidades3_600px.jpg" alt="novidade3" loading="lazy">
             </div>
         </section>
+
+        <!-- ===================== CATÁLOGO ===================== -->
         <section id="catalogo">
             <div class="titulo-catalogo">
                 <h2>CATÁLOGO</h2>
             </div>
             <div class="linha1">
-                <img src="imagens/exemplo_novidades600px.jpg" alt="Item1">
-                <img src="imagens/exemplo_novidades600px.jpg" alt="Item2">
-                <img src="imagens/exemplo_novidades2_600px.jpg" alt="Item3">
+                <img src="imagens/exemplo_novidades600px.jpg" alt="Item1" loading="lazy">
+                <img src="imagens/exemplo_novidades600px.jpg" alt="Item2" loading="lazy">
             </div>
             <div class="linha2">
-                <img src="imagens/exemplo_novidades2_600px.jpg" alt="Item4">
-                <img src="imagens/exemplo_novidades3_600px.jpg" alt="Item5">
-                <img src="imagens/exemplo_novidades3_600px.jpg" alt="Item6">
+                <img src="imagens/exemplo_novidades2_600px.jpg" alt="Item3" loading="lazy">
+                <img src="imagens/exemplo_novidades3_600px.jpg" alt="Item4" loading="lazy">
             </div>
         </section>
-        <section class="sobre-container">
+
+        <!-- ===================== SOBRE ===================== -->
+        <section id="sobre" class="sobre-container">
             <div class="titulo-sobre"><h2>SOBRE</h2></div>
             <h3>Quem somos ?</h3>
-            <p>Bem-vinda à Sorelle! O nosso nome significa "irmãs" em italiano e reflete exatamente quem somos: três irmãs apaixonadas por moda e acessórios.O que começou como um hábito de compartilhar roupas e sonhos dentro de casa, transformou-se no nosso próprio negócio. Nascemos como uma loja simples, focada no atendimento próximo e na escolha cuidadosa de cada peça para elevar a sua autoestima.Mais do que uma loja, a Sorelle é um projeto em evolução. Trabalhamos diariamente com o objetivo claro de transformar nosso sonho em uma grande marca, reconhecida pelo estilo, qualidade e conexão real com você.A Sorelle é a união da nossa força e do amor pelo que fazemos. Ficamos muito felizes em ter você aqui fazendo parte do início da nossa história!Com carinho,As três irmãs.</p>
+            <p>Bem-vinda à Sorelle! O nosso nome significa "irmãs" em italiano e reflete exatamente quem somos: três irmãs apaixonadas por moda e acessórios. O que começou como um hábito de compartilhar roupas e sonhos dentro de casa, transformou-se no nosso próprio negócio. Nascemos como uma loja simples, focada no atendimento próximo e na escolha cuidadosa de cada peça para elevar a sua autoestima. Mais do que uma loja, a Sorelle é um projeto em evolução. Trabalhamos diariamente com o objetivo claro de transformar nosso sonho em uma grande marca, reconhecida pelo estilo, qualidade e conexão real com você. A Sorelle é a união da nossa força e do amor pelo que fazemos. Ficamos muito felizes em ter você aqui fazendo parte do início da nossa história! Com carinho, As três irmãs.</p>
+        </section>
+
+        <!-- ===================== CONTATO =====================
+             Seção com dados de EXEMPLO. Troque o conteúdo dos atributos 
+             href e o texto visível pelos dados reais da loja (telefone, 
+             e-mail, @ do Instagram e endereço) antes de publicar. 
+             Os campos foram marcados com o comentário "EXEMPLO" para 
+             facilitar a busca depois. -->
+        <section id="contato" class="contato-container">
+            <div class="titulo-contato"><h2>CONTATO</h2></div>
+
+            <div class="contato__conteudo">
+                <!-- Bloco de canais diretos -->
+                <ul class="contato__lista">
+                    <li>
+                        <span class="contato__rotulo">WhatsApp</span>
+                        <!-- EXEMPLO: troque o número no href (formato 55DDDNÚMERO) e no texto -->
+                        <a href="https://wa.me/5534000000000" target="_blank" rel="noopener noreferrer">(34) 00000-0000</a>
+                    </li>
+                    <li>
+                        <span class="contato__rotulo">E-mail</span>
+                        <!-- EXEMPLO: troque pelo e-mail real da loja -->
+                        <a href="mailto:contato@sorelle.com.br">contato@sorelle.com.br</a>
+                    </li>
+                    <li>
+                        <span class="contato__rotulo">Instagram</span>
+                        <!-- EXEMPLO: troque pelo @ real -->
+                        <a href="https://instagram.com/sorelle" target="_blank" rel="noopener noreferrer">@sorelle</a>
+                    </li>
+                    <li>
+                        <span class="contato__rotulo">Endereço</span>
+                        <!-- EXEMPLO: troque pelo endereço real da loja física, se houver -->
+                        <span>Rua Exemplo, 123 – Centro, Uberaba/MG</span>
+                    </li>
+                </ul>
+
+                <!-- 
+                    Formulário simples de contato. Ainda não envia para nenhum servidor 
+                    (não há back-end configurado); o "action" está vazio de propósito. 
+                    Quando houver um endpoint (ex.: Formspree, back-end próprio, etc.), 
+                    basta preencher o atributo action e o method correspondente. 
+                -->
+                <form class="contato__form" action="#" method="post">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" rows="4" placeholder="Como podemos ajudar?" required></textarea>
+
+                    <button type="submit">Enviar mensagem</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ===================== FAQ =====================
+             Usamos <details>/<summary> nativo do HTML: cada pergunta abre e 
+             fecha sem precisar de JavaScript (funciona mesmo com script 
+             desabilitado). O script.js apenas adiciona um comportamento 
+             extra (fechar as outras perguntas ao abrir uma nova). -->
+        <section id="faq" class="faq-container">
+            <div class="titulo-faq"><h2>FAQ</h2></div>
+
+            <div class="faq__lista">
+                <details class="faq__item" name="faq-grupo">
+                    <summary>Quais são as formas de pagamento?</summary>
+                    <p>Aceitamos Pix, cartão de crédito e cartão de débito. <em>(texto de exemplo — atualize com as opções reais)</em></p>
+                </details>
+
+                <details class="faq__item" name="faq-grupo">
+                    <summary>Qual o prazo de entrega?</summary>
+                    <p>O prazo varia conforme a região. <em>(texto de exemplo — atualize com os prazos reais)</em></p>
+                </details>
+
+                <details class="faq__item" name="faq-grupo">
+                    <summary>Como funcionam as trocas e devoluções?</summary>
+                    <p>Você pode solicitar troca em até 7 dias após o recebimento. <em>(texto de exemplo — atualize com a política real)</em></p>
+                </details>
+
+                <details class="faq__item" name="faq-grupo">
+                    <summary>Vocês têm loja física?</summary>
+                    <p>No momento trabalhamos apenas online. <em>(texto de exemplo — atualize se houver loja física)</em></p>
+                </details>
+            </div>
         </section>
     </main>
+
+    <footer class="rodape">
+        <p>&copy; <span id="anoAtual">2026</span> SoreLLe. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="JS/script.js" defer></script>
 </body>
 </html>

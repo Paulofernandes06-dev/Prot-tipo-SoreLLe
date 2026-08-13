@@ -1,135 +1,269 @@
-:root{
-    --cor-principal: #4C5330; /*Símbolo de sofisticação e natureza*/
-    --dourado-primario: #D4AF37; /*eleGância e metais finos*/
-    --dourado-claro: #F9E29C; /*(Luminosidade e destaque)*/
+/* ==========================================================================
+   ÍNDICE (facilita achar cada bloco em um arquivo grande)
+   1. Variáveis / tokens de design
+   2. Reset básico
+   3. Layout geral / utilitários
+   4. Header / navegação
+   5. Hero (frase marcante)
+   6. Novidades
+   7. Catálogo
+   8. Sobre
+   9. Contato
+   10. FAQ
+   11. Rodapé
+   12. Acessibilidade (foco, movimento reduzido)
+   13. Media queries (mobile-first: tablet 768px, desktop 1024px, wide 1440px)
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. VARIÁVEIS / TOKENS DE DESIGN
+   Centralizar cores e espaçamentos aqui é o que torna o site escalável:
+   qualquer ajuste de identidade visual passa a ser feito em um único lugar,
+   em vez de caçar valores espalhados pelo arquivo inteiro.
+   -------------------------------------------------------------------------- */
+:root {
+    /* Cores da marca */
+    --cor-principal: #4C5330;   /* Símbolo de sofisticação e natureza */
+    --dourado-primario: #D4AF37; /* Elegância e metais finos */
+    --dourado-claro: #F9E29C;    /* Luminosidade e destaque */
     --verde-claro: #5d6833;
+    --branco: #ffffff;
+    --texto-escuro: #2b2f1c;
+
+    /* Tipografia */
+    --fonte-padrao: 'Poppins', sans-serif;
+    --fonte-destaque: 'Times New Roman', Times, serif;
+
+    /* Espaçamentos (escala consistente em vez de valores soltos) */
+    --espaco-xs: 5px;
+    --espaco-sm: 10px;
+    --espaco-md: 15px;
+    --espaco-lg: 20px;
+    --espaco-xl: 30px;
+    --espaco-2xl: 48px;
+
+    /* Bordas */
+    --raio-sm: 5px;
+    --raio-md: 15px;
+
+    /* Largura máxima de conteúdo em telas grandes, para o texto/imagens
+       não esticarem infinitamente em monitores muito largos */
+    --largura-maxima: 1200px;
+
+    /* 
+       Obs.: os breakpoints (768px, 1024px, 1440px) não podem virar variável
+       CSS porque @media não aceita var() nas condições. Eles ficam
+       documentados aqui só como referência do que é usado no arquivo:
+       - 768px  -> tablet
+       - 1024px -> desktop
+       - 1440px -> telas largas
+    */
 }
 
+
+/* --------------------------------------------------------------------------
+   2. RESET BÁSICO
+   -------------------------------------------------------------------------- */
 * {
-    font-family: Poppins; /*FONTE PADRÃO*/
+    font-family: var(--fonte-padrao);
+    box-sizing: border-box; /* padding/border não somam ao width, evita
+                                estouro de layout ao adicionar componentes novos */
 }
 
 body {
     margin: 0 auto;
-    padding: auto;
+    padding: 0;
     width: 100%;
     background-color: var(--verde-claro);
 }
 
-.navbar-container{
+
+/* --------------------------------------------------------------------------
+   3. LAYOUT GERAL / UTILITÁRIOS
+   -------------------------------------------------------------------------- */
+
+/* Utilitário reaproveitável: qualquer seção pode "pedir" para ter largura
+   máxima e ficar centralizada usando essa classe, sem repetir a regra. */
+.container {
+    max-width: var(--largura-maxima);
+    margin: 0 auto;
+    padding-left: var(--espaco-md);
+    padding-right: var(--espaco-md);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. HEADER / NAVEGAÇÃO
+   -------------------------------------------------------------------------- */
+.navbar-container {
     padding: 15px 20px;
-    border: 1px solid #D4AF37;
-    border-radius: 5px;
-    background-color: #4C5330;
+    border: 1px solid var(--dourado-primario);
+    border-radius: var(--raio-sm);
+    background-color: var(--cor-principal);
     display: flex;
-    justify-content: center; /*Coloca logo ao lado da navegação*/
+    justify-content: center;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: var(--espaco-lg);
+    position: relative; /* serve de referência para o botão hambúrguer, se algum dia virar "position: absolute" */
 }
 .navbar-container a {
     text-decoration: none;
     color: var(--dourado-primario);
 }
 
-
 #logo_link {
     border: 1px solid var(--dourado-primario);
     border-radius: 4px;
-    padding: 6px 12px; /* Mais espaço nas laterais deixa mais imponente */
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600; /* Deixa a letra levemente mais grossa/forte */
-    text-transform: uppercase; /* Força todas as letras ficarem MAIÚSCULAS */
-    letter-spacing: 3px; /* Dá um distanciamento elegante entre cada letra */
-    transition: all 0.4s ease; /* A mágica sênior: faz o efeito do mouse ser suave */
+    padding: 6px 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: all 0.4s ease;
 }
 #logo_link:hover {
     color: var(--dourado-claro);
     border-color: var(--dourado-claro);
-    background-color: rgba(212, 175, 55, 0.08); /* Cria um brilho dourado de fundo bem suave (8%) */
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); /* Adiciona uma aura de luz dourada bem discreta ao redor */
+    background-color: rgba(212, 175, 55, 0.08);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
 }
 
-
-.nav { /*Navegação do menu principal container*/
+.nav {
     display: flex;
-    gap: 15px;
+    flex-direction: column; /* empilhado no celular */
+    gap: var(--espaco-md);
     text-decoration: underline;
     text-decoration-color: var(--dourado-primario);
+    width: 100%;
+    text-align: center;
 }
-.nav :hover { /*Efeito de acesso quando clica ou passa o mouse sobre os links*/
+.nav a:hover {
     background-color: var(--dourado-claro);
-    border-radius: 5px;
+    border-radius: var(--raio-sm);
     padding: 5px;
 }
+/* Aplicada via JS (script.js) para indicar em qual seção da página o
+   usuário está no momento */
+.nav a.nav__link--ativo {
+    color: var(--dourado-claro);
+    font-weight: 600;
+}
+
+/* Botão hambúrguer: por padrão fica escondido; a media query de tablet+
+   também o esconde, então na prática ele só aparece em telas bem pequenas
+   se decidirmos usar um layout de menu recolhido no futuro. Deixado
+   pronto (progressive enhancement) para reaproveitar sem reescrever HTML. */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: 1px solid var(--dourado-primario);
+    border-radius: var(--raio-sm);
+    padding: 8px 10px;
+    cursor: pointer;
+}
+.nav-toggle__bar {
+    width: 20px;
+    height: 2px;
+    background-color: var(--dourado-primario);
+    display: block;
+}
 
 
+/* --------------------------------------------------------------------------
+   5. HERO (frase marcante)
+   -------------------------------------------------------------------------- */
 .frase_marcante {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--fonte-destaque);
     color: var(--dourado-primario);
     text-align: center;
     font-style: italic;
-    margin-bottom: 30px;
+    margin: var(--espaco-lg) var(--espaco-md) var(--espaco-xl);
 }
 
 
-.novidades{
+/* --------------------------------------------------------------------------
+   6. NOVIDADES
+   -------------------------------------------------------------------------- */
+.novidades {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     text-align: center;
-    margin: 5px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    margin: var(--espaco-xs);
+    margin-bottom: var(--espaco-sm);
+    border-radius: var(--raio-sm);
 }
 .novidades h2 {
     background-color: var(--dourado-primario);
     height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    color: var(--cor-principal);
+}
+.novidades__grade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaco-sm);
+    padding: var(--espaco-sm) 0;
 }
 .novidades img {
     border: 1px solid var(--dourado-primario);
-    border-radius: 5px;
-    max-width: 60vw;
+    border-radius: var(--raio-sm);
+    max-width: 90vw;
 }
 
 h2 {
     color: var(--dourado-primario);
 }
 
+
+/* --------------------------------------------------------------------------
+   7. CATÁLOGO
+   -------------------------------------------------------------------------- */
 #catalogo {
     border-top: 1px solid var(--dourado-primario);
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin: 0px;
+    gap: var(--espaco-md);
+    margin: 0;
+    padding-bottom: var(--espaco-md);
 }
 .titulo-catalogo {
     background-color: var(--dourado-primario);
 }
 .titulo-catalogo h2 {
     color: var(--cor-principal);
+    margin: 0;
+    padding: var(--espaco-sm) 0;
 }
 
-/* CORREÇÃO: Usando a vírgula para aplicar a regra nas duas classes */
 .linha1, .linha2 {
     border: 1px solid var(--dourado-claro);
-    display: flex;        /* Ativa o flex para alinhar os produtos da linha */
-    flex-direction: column; /* No celular, os produtos ficam um embaixo do outro */
-    gap: 10px;
-    /* REMOVIDO: height fixo de 40vh pode quebrar o layout no mobile */
-    padding: 10px;        /* Dá um espaço interno respirável */
+    display: flex;
+    flex-direction: column; /* empilhado no celular */
+    gap: var(--espaco-sm);
+    padding: var(--espaco-sm);
     margin: 3px;
 }
-
-/* Garante que as imagens dentro da linha não estourem o tamanho da tela */
 .linha1 img, .linha2 img {
     border: 1px solid var(--dourado-claro);
-    max-width: 100%;      /* A imagem nunca fica maior que a caixinha dela */
-    height: auto;         /* Mantém a proporção correta da foto */
-    border-radius: 15px;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--raio-md);
 }
-.sobre-container{
+
+
+/* --------------------------------------------------------------------------
+   8. SOBRE
+   -------------------------------------------------------------------------- */
+.sobre-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -142,8 +276,293 @@ h2 {
 }
 p {
     text-align: justify;
-    margin: 5px;
+    margin: var(--espaco-xs);
     border: 1px solid var(--dourado-claro);
-    border-radius: 15px;
-    padding: 10px;
+    border-radius: var(--raio-md);
+    padding: var(--espaco-sm);
+}
+
+
+/* --------------------------------------------------------------------------
+   9. CONTATO
+   -------------------------------------------------------------------------- */
+.contato-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--cor-principal);
+    padding-bottom: var(--espaco-lg);
+}
+.titulo-contato {
+    width: 100%;
+    background-color: var(--dourado-primario);
+    text-align: center;
+}
+.titulo-contato h2 {
+    color: var(--cor-principal);
+    margin: 0;
+    padding: var(--espaco-sm) 0;
+}
+.contato__conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-lg);
+    width: 100%;
+    padding: var(--espaco-lg) var(--espaco-md) 0;
+}
+
+.contato__lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-sm);
+}
+.contato__lista li {
+    background-color: var(--verde-claro);
+    border: 1px solid var(--dourado-claro);
+    border-radius: var(--raio-sm);
+    padding: var(--espaco-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.contato__rotulo {
+    color: var(--dourado-claro);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.contato__lista a {
+    color: var(--dourado-primario);
+}
+.contato__lista span:not(.contato__rotulo) {
+    color: var(--branco);
+}
+
+.contato__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-sm);
+    background-color: var(--verde-claro);
+    border: 1px solid var(--dourado-claro);
+    border-radius: var(--raio-md);
+    padding: var(--espaco-md);
+}
+.contato__form label {
+    color: var(--dourado-claro);
+    font-size: 0.9rem;
+}
+.contato__form input,
+.contato__form textarea {
+    font-family: var(--fonte-padrao);
+    padding: var(--espaco-sm);
+    border-radius: var(--raio-sm);
+    border: 1px solid var(--dourado-primario);
+    background-color: var(--branco);
+    color: var(--texto-escuro);
+    resize: vertical;
+}
+.contato__form button {
+    font-family: var(--fonte-padrao);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: var(--dourado-primario);
+    color: var(--cor-principal);
+    border: none;
+    border-radius: var(--raio-sm);
+    padding: var(--espaco-sm) var(--espaco-md);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.contato__form button:hover {
+    background-color: var(--dourado-claro);
+}
+
+
+/* --------------------------------------------------------------------------
+   10. FAQ
+   -------------------------------------------------------------------------- */
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--dourado-primario);
+    padding-bottom: var(--espaco-lg);
+}
+.titulo-faq h2 {
+    color: var(--cor-principal);
+    padding: var(--espaco-sm) 0;
+}
+.faq__lista {
+    width: 100%;
+    padding: 0 var(--espaco-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-sm);
+}
+.faq__item {
+    background-color: var(--branco);
+    border: 1px solid var(--cor-principal);
+    border-radius: var(--raio-sm);
+    padding: var(--espaco-sm) var(--espaco-md);
+}
+.faq__item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--cor-principal);
+    list-style: none; /* remove a seta padrão do <details> para estilizar a nossa */
+    position: relative;
+    padding-right: var(--espaco-lg);
+}
+.faq__item summary::-webkit-details-marker {
+    display: none; /* remove a seta padrão no Chrome/Safari */
+}
+.faq__item summary::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-weight: 700;
+}
+.faq__item[open] summary::after {
+    content: "–";
+}
+.faq__item p {
+    border: none;
+    padding: var(--espaco-sm) 0 0;
+    margin: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   11. RODAPÉ
+   -------------------------------------------------------------------------- */
+.rodape {
+    text-align: center;
+    padding: var(--espaco-md);
+    background-color: var(--cor-principal);
+    color: var(--dourado-claro);
+    font-size: 0.85rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   12. ACESSIBILIDADE
+   -------------------------------------------------------------------------- */
+
+/* Foco visível para quem navega pelo teclado (Tab). Sem isso, o navegador
+   usa um contorno genérico que muitas vezes some por cima do fundo escuro. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+    outline: 2px solid var(--dourado-claro);
+    outline-offset: 2px;
+}
+
+/* Respeita quem pediu para o sistema reduzir animações */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+
+/* ==========================================================================
+   13. MEDIA QUERIES (mobile-first)
+   A base do arquivo acima já é o layout de celular. Cada bloco abaixo
+   apenas ADICIONA ou SOBRESCREVE o necessário para telas maiores —
+   isso evita duplicar regras e mantém a especificidade sob controle.
+   ========================================================================== */
+
+/* ---- TABLET (a partir de 768px) ---- */
+@media (min-width: 768px) {
+
+    /* Header vira uma linha só: logo à esquerda, menu à direita */
+    .navbar-container {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: var(--espaco-md) var(--espaco-xl);
+    }
+    .nav {
+        flex-direction: row;
+        width: auto;
+        gap: var(--espaco-lg);
+    }
+    .nav-toggle {
+        display: none; /* menu já visível por completo, sem necessidade do botão */
+    }
+
+    /* Novidades e catálogo passam a usar grade em vez de coluna única */
+    .novidades__grade {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .novidades img {
+        max-width: 45vw;
+    }
+
+    .linha1, .linha2 {
+        flex-direction: row;
+    }
+    .linha1 img, .linha2 img {
+        flex: 1 1 0; /* três imagens dividindo o espaço igualmente */
+    }
+
+    /* Contato: lista de canais e formulário lado a lado */
+    .contato__conteudo {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .contato__lista,
+    .contato__form {
+        flex: 1 1 0;
+    }
+}
+
+
+/* ---- DESKTOP (a partir de 1024px) ---- */
+@media (min-width: 1024px) {
+
+    /* A partir daqui, todo o conteúdo principal ganha um teto de largura
+       e fica centralizado, para não esticar demais em monitores grandes. */
+    .navbar-container,
+    .novidades,
+    #catalogo,
+    .sobre-container,
+    .contato-container,
+    .faq-container {
+        max-width: var(--largura-maxima);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .frase_marcante {
+        font-size: 1.6rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .novidades img {
+        max-width: 28vw;
+    }
+
+    .sobre-container p {
+        max-width: 900px;
+    }
+}
+
+
+/* ---- TELAS LARGAS (a partir de 1440px) ---- */
+@media (min-width: 1440px) {
+    .novidades img {
+        max-width: 360px; /* trava um tamanho fixo para não ficarem gigantes */
+    }
 }
